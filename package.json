@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "compromise": "^14.13.0",
     "jsonwebtoken": "^9.0.2",
     "natural": "^7.0.6",
     "pdf-lib": "^1.17.1",
