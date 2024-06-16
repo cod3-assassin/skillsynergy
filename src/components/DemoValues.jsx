@@ -37,6 +37,18 @@ const demoValues = {
           "Collaborated with UX designers to enhance user experience.",
         ],
       },
+      {
+        title: "Project B",
+        duration: "Jan 2022 - Present",
+        description:
+          "Led a team of developers to create an e-commerce platform.",
+        responsibilities: [
+          "Architected the application using microservices.",
+          "Developed reusable components in React.",
+          "Set up CI/CD pipelines using GitHub Actions.",
+          "Collaborated with UX designers to enhance user experience.",
+        ],
+      },
     ],
     null,
     2

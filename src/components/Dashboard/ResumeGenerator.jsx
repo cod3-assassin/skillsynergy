@@ -42,92 +42,104 @@ const ResumeGenerator = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen py-8 flex items-center justify-center">
-      <div className="bg-white rounded-lg shadow-lg p-4 w-full max-w-3xl transform scale-90 md:scale-100">
+      <div
+        className="bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl"
+        style={{ maxWidth: "850px" }}
+      >
         {/* Header */}
-        <header className="flex flex-col md:flex-row items-start justify-between mb-4">
-          <div className="flex flex-col items-start md:items-center">
-            <h1 className="text-lg md:text-2xl mb-0 text-blue-700">{name}</h1>
-            <p className="text-sm md:text-base text-blue-700">{jobRole}</p>
+        <header className="flex flex-col md:flex-row items-start justify-between">
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-bold text-blue-700">{name}</h1>
+            <p className="text-base text-blue-700">{jobRole}</p>
           </div>
-          <div className="flex flex-col md:flex-row items-start md:items-center">
+          <div className="flex space-x-4">
             <a
               href={linkedin}
-              className="text-blue-700 no-underline hover:underline text-xs md:text-sm ml-auto"
+              className="text-blue-700 no-underline hover:underline text-sm"
             >
               LinkedIn
             </a>
             <a
               href={github}
-              className="text-blue-700 no-underline hover:underline text-xs md:text-sm ml-2 md:ml-4"
+              className="text-blue-700 no-underline hover:underline text-sm"
             >
               GitHub
             </a>
           </div>
         </header>
-        <hr className="my-8 border-t-2 border-gray-300" />
-        {/* Contact Information and Profile Summary */}
-        <div className="flex flex-col md:flex-row justify-between">
-          {/* Contact Information */}
-          <div className="md:flex-1 mb-4 md:mb-0">
-            <section>
-              <h2 className="text-lg font-bold mb-2">Contact Information</h2>
-              <ul className="list-disc pl-5 space-y-1 text-xs md:text-sm">
-                <li>Email: {email}</li>
-                <li>Phone: {phone}</li>
-                <li>
-                  Portfolio: <a href="#">Your Portfolio Link</a>
-                </li>
-              </ul>
-            </section>
-          </div>
 
-          {/* Profile Summary */}
+        {/* Objective */}
+        <section className="mb-6">
+          <p className="text-base">
+            Targeting Full Stack Developer roles with an organization of high
+            repute with a scope of improving knowledge and further career
+            growth.
+          </p>
+        </section>
+
+        <hr className="my-6 border-t-2 border-gray-300" />
+        <div className="mb-6">
+          <h2 className="text-lg font-bold mb-2">Profile Summary</h2>
+          <ul className="list-disc pl-5 space-y-1 text-sm">
+            <li>
+              A full stack developer with high problem-solving skills and
+              develops complex projects.
+            </li>
+            <li>
+              Proficient in IoT Devices and built projects for widespread use.
+            </li>
+          </ul>
+        </div>
+
+        {/* Contact Information and Academic Details */}
+        <div className="flex flex-col md:flex-row justify-between mb-6">
+          <div className="md:flex-1 mb-4 md:mb-0">
+            <h2 className="text-lg font-bold mb-2">Contact Information</h2>
+            <ul className="list-disc pl-5 space-y-1 text-sm">
+              <li>Email: {email}</li>
+              <li>Phone: {phone}</li>
+              <li>
+                Portfolio: <a href="#">Your Portfolio Link</a>
+              </li>
+            </ul>
+          </div>
           <div className="md:flex-1 md:ml-4">
-            <section>
-              <h2 className="text-lg font-bold mb-2">Profile Summary</h2>
-              <ul className="list-disc pl-5 space-y-1 text-xs md:text-sm">
-                <li>
-                  A full stack developer with high problem-solving skills and
-                  develops complex projects.
-                </li>
-                <li>
-                  I have proficiency in IoT Devices and built projects which can
-                  be used by a widespread of people.
-                </li>
-              </ul>
-            </section>
+            <h2 className="text-lg font-bold mb-2">Academic Details</h2>
+            <p className="text-sm">{academicDetails}</p>
           </div>
         </div>
 
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row justify-between">
-          {/* Left Column */}
+        <div className="flex flex-col md:flex-row justify-between mb-6">
           <div className="md:w-1/2 mb-8 md:mb-0">
-            <section className="mb-4">
-              <h2 className="text-lg font-bold mb-2">Academic Details</h2>
-              <p className="text-xs md:text-sm">{academicDetails}</p>
-            </section>
-
-            <section className="mb-4">
-              <h2 className="text-lg font-bold mb-2">Soft Skills</h2>
-              <ul className="list-disc pl-5 space-y-1 text-xs md:text-sm">
-                <li>Analytical</li>
-                <li>Collaborator</li>
-                <li>Leader</li>
-                <li>Adaptable</li>
-              </ul>
-            </section>
-
-            <section className="mb-4">
+            <section className="mb-6">
               <h2 className="text-lg font-bold mb-2">Technical Skills</h2>
-              <p className="text-xs md:text-sm">
-                {safeTechnicalSkills.join(", ")}
-              </p>
+              <div className="text-sm">
+                <h3 className="font-semibold">Frontend Development:</h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>React.js (including Redux)</li>
+                  <li>HTML5, CSS (Bootstrap, Tailwind)</li>
+                  <li>JavaScript (ES6+)</li>
+                  <li>GSAP (Animation)</li>
+                  <li>Responsive Design</li>
+                </ul>
+
+                <h3 className="font-semibold mt-4">Backend Development:</h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>Node.js, Express.js</li>
+                  <li>MongoDB (NoSQL)</li>
+                </ul>
+
+                <h3 className="font-semibold mt-4">Authentication:</h3>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>JSON Web Tokens (JWT)</li>
+                </ul>
+              </div>
             </section>
 
-            <section className="mb-4">
+            <section className="mb-6">
               <h2 className="text-lg font-bold mb-2">Core Competencies</h2>
-              <ul className="list-disc pl-5 space-y-1 text-xs md:text-sm">
+              <ul className="list-disc pl-5 space-y-1 text-sm">
                 {safeCoreCompetencies.map((competency, index) => (
                   <li key={index}>{competency}</li>
                 ))}
@@ -136,47 +148,42 @@ const ResumeGenerator = () => {
 
             <section>
               <h2 className="text-lg font-bold mb-2">Personal Details</h2>
-              <p className="text-xs md:text-sm">{personalDetails}</p>
+              <p className="text-sm">{personalDetails}</p>
             </section>
           </div>
 
-          {/* Right Column */}
-          <div className="md:w-1/2">
-            <section className="mb-4">
+          <div className="md:w-1/2 md:ml-0" style={{ marginLeft: "-40px" }}>
+            <section className="mb-6">
               <h2 className="text-lg font-bold mb-2">Academic Projects</h2>
               {parsedProjects.length > 0 ? (
                 parsedProjects.map((project, index) => (
-                  <div key={index} className="mb-2">
-                    <h3 className="text-md font-bold mb-1">{project.title}</h3>
-                    <p className="italic text-xs md:text-sm">
-                      {project.duration}
-                    </p>
-                    <p className="text-xs md:text-sm">{project.description}</p>
-                    <ul className="list-disc pl-5 space-y-1 text-xs md:text-sm">
+                  <div key={index} className="mb-4">
+                    <h3 className="text-md font-bold">{project.title}</h3>
+                    <p className="italic text-sm">{project.duration}</p>
+                    <p className="text-sm">{project.description}</p>
+                    <ul className="list-disc pl-5 space-y-1 text-sm">
                       {project.responsibilities.map((responsibility, i) => (
                         <li key={i}>{responsibility}</li>
                       ))}
                     </ul>
                     {project.sourceCode && (
-                      <p className="text-xs md:text-sm">
+                      <p className="text-sm">
                         Source Code: {project.sourceCode}
                       </p>
                     )}
                     {project.liveLink && (
-                      <p className="text-xs md:text-sm">
-                        Live Link: {project.liveLink}
-                      </p>
+                      <p className="text-sm">Live Link: {project.liveLink}</p>
                     )}
                   </div>
                 ))
               ) : (
-                <p className="text-xs md:text-sm">No projects found.</p>
+                <p className="text-sm">No projects found.</p>
               )}
             </section>
 
             <section>
               <h2 className="text-lg font-bold mb-2">Academic Achievements</h2>
-              <ul className="list-disc pl-5 space-y-1 text-xs md:text-sm">
+              <ul className="list-disc pl-5 space-y-1 text-sm">
                 {achievements &&
                   achievements.map((achievement, index) => (
                     <li key={index}>{achievement}</li>
@@ -185,10 +192,10 @@ const ResumeGenerator = () => {
             </section>
           </div>
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
-          Download Resume
-        </button>
       </div>
+      <button className="mt-6 bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded transition duration-200">
+        Download Resume
+      </button>
     </div>
   );
 };
