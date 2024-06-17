@@ -20,7 +20,10 @@ const App = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/profile" element={<UserProfile />} />
-            <Route path="/resume-generator" element={<ResumeGenerator />} />
+            <Route
+              path="/resume-generator"
+              element={<ResumeGenerator hideDownloadButton={true} />}
+            />
           </Routes>
         </main>
         <Footer />

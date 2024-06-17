@@ -1,91 +1,26 @@
 import React from "react";
-import { PDFDocument, rgb } from "pdf-lib";
+import html2pdf from "html2pdf.js";
 
-const DownloadButton = ({ resumeData }) => {
+const DownloadButton = () => {
   const handleDownload = async () => {
+    const resumeElement = document.getElementById("resume-content");
+
+    if (!resumeElement) {
+      console.error("Resume content element not found");
+      return;
+    }
+
     try {
-      // Create a new PDF document
-      const pdfDoc = await PDFDocument.create();
-      const page = pdfDoc.addPage();
+      // Use html2pdf to convert the resume element to PDF
+      const opt = {
+        margin: 0,
+        filename: "resume.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 1 },
+        jsPDF: { unit: "px", format: [1024, 1448], orientation: "portrait" },
+      };
 
-      const {
-        name,
-        jobRole,
-        profileSummary,
-        academicDetails,
-        safeTechnicalSkills,
-        safeCoreCompetencies,
-        parsedProjects,
-        achievements,
-        personalDetails,
-      } = resumeData;
-
-      const content = `
-        Name: ${name}
-        Job Role: ${jobRole}
-
-        Profile Summary:
-        ${profileSummary}
-
-        Academic Details:
-        ${academicDetails}
-
-        Technical Skills:
-        ${safeTechnicalSkills.join(", ")}
-
-        Core Competencies:
-        ${safeCoreCompetencies.join(", ")}
-
-        Projects:
-        ${projects
-          .map((project) => {
-            const responsibilities = Array.isArray(project.responsibilities)
-              ? project.responsibilities.join(", ")
-              : "Responsibilities not provided";
-
-            return `
-    Title: ${project.title}
-    Duration: ${project.duration}
-    Description: ${project.description}
-    Responsibilities: ${responsibilities}
-    Source Code: ${project.sourceCode || "Not provided"}
-    Live Link: ${project.liveLink || "Not provided"}
-  `;
-          })
-          .join("\n\n")}
-
-        Achievements:
-        ${achievements.join(", ")}
-
-        Personal Details:
-        ${personalDetails}
-      `;
-
-      // Draw text on the PDF page
-      page.drawText(content, {
-        x: 50,
-        y: page.getHeight() - 100,
-        size: 12,
-        color: rgb(0, 0, 0),
-      });
-
-      // Serialize the PDFDocument to bytes
-      const pdfBytes = await pdfDoc.save();
-
-      // Convert bytes to a blob URL
-      const blob = new Blob([pdfBytes], { type: "application/pdf" });
-      const url = URL.createObjectURL(blob);
-
-      // Create an anchor tag and simulate click to download
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "resume.pdf";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-
-      // Release the URL object
-      URL.revokeObjectURL(url);
+      html2pdf().from(resumeElement).set(opt).save();
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
