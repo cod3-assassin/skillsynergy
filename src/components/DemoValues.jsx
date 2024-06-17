@@ -1,9 +1,9 @@
-// src/components/DemoValues.jsx
 import React from "react";
 
 const demoValues = {
   name: "Jane Doe",
   email: "janedoe@example.com",
+  phone: "1234567889",
   jobRole: "Software Engineer",
   jobDescription:
     "Passionate software engineer with 3 years of experience in web development, specializing in React and Node.js. Proven ability to design, develop, and deploy web applications that meet user needs and business objectives.",
@@ -11,48 +11,38 @@ const demoValues = {
     "Bachelor of Science in Computer Science from XYZ University, Graduated in 2020.",
   technicalSkills:
     "JavaScript\nReact\nNode.js\nExpress.js\nMongoDB\nHTML & CSS\nGit & GitHub",
-  projects: JSON.stringify(
-    [
-      {
-        title: "Project A",
-        duration: "Jan 2021 - Dec 2021",
-        description:
-          "Developed a full-stack web application for task management.",
-        responsibilities: [
-          "Designed the front-end using React.",
-          "Implemented RESTful APIs with Node.js and Express.",
-          "Integrated MongoDB for database management.",
-          "Deployed the application on Heroku.",
-        ],
-      },
-      {
-        title: "Project B",
-        duration: "Jan 2022 - Present",
-        description:
-          "Led a team of developers to create an e-commerce platform.",
-        responsibilities: [
-          "Architected the application using microservices.",
-          "Developed reusable components in React.",
-          "Set up CI/CD pipelines using GitHub Actions.",
-          "Collaborated with UX designers to enhance user experience.",
-        ],
-      },
-      {
-        title: "Project B",
-        duration: "Jan 2022 - Present",
-        description:
-          "Led a team of developers to create an e-commerce platform.",
-        responsibilities: [
-          "Architected the application using microservices.",
-          "Developed reusable components in React.",
-          "Set up CI/CD pipelines using GitHub Actions.",
-          "Collaborated with UX designers to enhance user experience.",
-        ],
-      },
-    ],
-    null,
-    2
-  ),
+  projects: JSON.stringify([
+    {
+      title: "Task Manager App",
+      duration: "Jan 2021 - Dec 2021",
+      description:
+        "Developed a full-stack web application for task management  application for task management Designed the front-end using React..",
+      responsibilities:
+        "Designed the front-end using React. Implemented RESTful APIs with Node.js and Express. Integrated MongoDB for database management. Deployed the application on Heroku.",
+      sourceCode: "https://github.com/janedoe/task-manager",
+      liveLink: "https://task-manager.janedoe.com",
+    },
+    {
+      title: "E-commerce Platform",
+      duration: "Jan 2022 - Present",
+      description:
+        "Led a team of developers to create an e-commerce platform.\nLed a team of developers to create an e-commerce platform.\nLed a team of developers to create an e-commerce platform.",
+      responsibilities:
+        "Architected the application using microservices. Developed reusable components in React. Set up CI/CD pipelines using GitHub Actions. Collaborated with UX designers to enhance user experience.",
+      sourceCode: "https://github.com/janedoe/e-commerce",
+      liveLink: "https://ecommerce.janedoe.com",
+    },
+    {
+      title: "E-commerce Platform",
+      duration: "Jan 2022 - Present",
+      description:
+        "Led a team of developers to create an e-commerce platform.\nLed a team of developers to create an e-commerce platform.\nLed a team of developers to create an e-commerce platform.",
+      responsibilities:
+        "Architected the application using microservices. Developed reusable components in React. Set up CI/CD pipelines using GitHub Actions. Collaborated with UX designers to enhance user experience.",
+      sourceCode: "https://github.com/janedoe/e-commerce",
+      liveLink: "https://ecommerce.janedoe.com",
+    },
+  ]),
   achievements:
     "Received Employee of the Month award at XYZ Company in May 2022.\nCompleted a certification in Advanced JavaScript from ABC Institute.",
   personalDetails:
@@ -61,12 +51,10 @@ const demoValues = {
     "Fluent in English and Spanish. Enjoys contributing to open source projects and participating in hackathons.",
   coreCompetencies:
     "Web Development\nReact\nNode.js\nExpress.js\nMongoDB\nUI/UX Design\nRESTful APIs\nGit & GitHub",
-
   summary:
-    "o A full stack developer with high problem-solving skills and develops complex projects.o I have proficiency in IoT Devices and built projects which can be used by a widespread of people. o Developed a highly scalable attendance system which is used regularly in our college. o Working professionals achieved Posture improvement with help of my Smart Chair. o Identified the visual inaccuracies in the existing college website and improved the UI. o Possesses in-depth knowledge of multiple technology stacks which in turn contributes to an efficient development stage of products.",
-
+    "A full stack developer with high problem-solving skills and the ability to develop complex projects. Proficient in IoT Devices with projects beneficial to a wide audience. Developed a highly scalable attendance system used regularly in college. Created a Smart Chair that improved posture for working professionals. Enhanced the UI of the college website by identifying and correcting visual inaccuracies. In-depth knowledge of multiple technology stacks contributing to efficient product development.",
   profileSummary:
-    " A full stack developer with high problem-solving skills and develops complex projects",
+    "A full stack developer with high problem-solving skills and the ability to develop complex projects.A full stack developer with high problem-solving skills and the ability to develop complex projects.",
 };
 
 const DemoValues = ({
@@ -83,6 +71,7 @@ const DemoValues = ({
   setAdditionalDetails,
   setCoreCompetencies,
   setSummary,
+  setPhone,
 }) => {
   const handleFillForm = () => {
     setName(demoValues.name);
@@ -91,13 +80,14 @@ const DemoValues = ({
     setJobDescription(demoValues.jobDescription);
     setAcademicDetails(demoValues.academicDetails);
     setTechnicalSkills(demoValues.technicalSkills);
-    setProjects(demoValues.projects);
+    setProjects(JSON.parse(demoValues.projects));
     setAchievements(demoValues.achievements);
     setPersonalDetails(demoValues.personalDetails);
     setAdditionalDetails(demoValues.additionalDetails);
-    setCoreCompetencies(demoValues.coreCompetencies); // Added to set core competencies
+    setCoreCompetencies(demoValues.coreCompetencies);
     setSummary(demoValues.summary);
     setProfileSummary(demoValues.profileSummary);
+    setPhone(demoValues.phone);
   };
 
   return (

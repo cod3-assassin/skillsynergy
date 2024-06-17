@@ -1,16 +1,18 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import DownloadButton from "./DownloadButton";
 
 const ResumeGenerator = () => {
   const location = useLocation();
+  const resumeData = location.state || {};
   const {
     name,
+    summary,
     email,
     phone,
     linkedin,
     github,
     jobRole,
-    objective,
     profileSummary,
     academicDetails,
     technicalSkills,
@@ -18,8 +20,9 @@ const ResumeGenerator = () => {
     projects,
     achievements,
     personalDetails,
-  } = location.state || {};
+  } = resumeData;
 
+  // Parse projects JSON string
   let parsedProjects = [];
   if (typeof projects === "string" && projects.trim() !== "") {
     try {
@@ -33,6 +36,7 @@ const ResumeGenerator = () => {
     }
   }
 
+  // Ensure core competencies and technical skills are arrays
   const safeCoreCompetencies = Array.isArray(coreCompetencies)
     ? coreCompetencies
     : [];
@@ -41,13 +45,10 @@ const ResumeGenerator = () => {
     : [];
 
   return (
-    <div className="bg-gray-100 min-h-screen py-8 flex items-center justify-center">
-      <div
-        className="bg-white rounded-lg shadow-lg p-6 w-full max-w-3xl"
-        style={{ maxWidth: "850px" }}
-      >
+    <div className="bg-gray-100 min-h-screen py-4 flex items-center justify-center">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-full md:max-w-screen-lg">
         {/* Header */}
-        <header className="flex flex-col md:flex-row items-start justify-between">
+        <header className="flex flex-col md:flex-row items-start justify-between mb-6">
           <div className="flex flex-col">
             <h1 className="text-2xl font-bold text-blue-700">{name}</h1>
             <p className="text-base text-blue-700">{jobRole}</p>
@@ -56,12 +57,16 @@ const ResumeGenerator = () => {
             <a
               href={linkedin}
               className="text-blue-700 no-underline hover:underline text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               LinkedIn
             </a>
             <a
               href={github}
               className="text-blue-700 no-underline hover:underline text-sm"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               GitHub
             </a>
@@ -70,24 +75,14 @@ const ResumeGenerator = () => {
 
         {/* Objective */}
         <section className="mb-6">
-          <p className="text-base">
-            Targeting Full Stack Developer roles with an organization of high
-            repute with a scope of improving knowledge and further career
-            growth.
-          </p>
+          <p className="text-base">{profileSummary}</p>
         </section>
 
-        <hr className="my-6 border-t-2 border-gray-300" />
+        <hr className="my-4 border-t-2 border-gray-300" />
         <div className="mb-6">
           <h2 className="text-lg font-bold mb-2">Profile Summary</h2>
           <ul className="list-disc pl-5 space-y-1 text-sm">
-            <li>
-              A full stack developer with high problem-solving skills and
-              develops complex projects.
-            </li>
-            <li>
-              Proficient in IoT Devices and built projects for widespread use.
-            </li>
+            <li>{summary}</li>
           </ul>
         </div>
 
@@ -98,9 +93,6 @@ const ResumeGenerator = () => {
             <ul className="list-disc pl-5 space-y-1 text-sm">
               <li>Email: {email}</li>
               <li>Phone: {phone}</li>
-              <li>
-                Portfolio: <a href="#">Your Portfolio Link</a>
-              </li>
             </ul>
           </div>
           <div className="md:flex-1 md:ml-4">
@@ -110,39 +102,31 @@ const ResumeGenerator = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row justify-between mb-6">
-          <div className="md:w-1/2 mb-8 md:mb-0">
+        <div className="flex flex-col md:flex-row mb-6">
+          <div className="md:w-1/2 md:pr-8">
             <section className="mb-6">
               <h2 className="text-lg font-bold mb-2">Technical Skills</h2>
-              <div className="text-sm">
-                <h3 className="font-semibold">Frontend Development:</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>React.js (including Redux)</li>
-                  <li>HTML5, CSS (Bootstrap, Tailwind)</li>
-                  <li>JavaScript (ES6+)</li>
-                  <li>GSAP (Animation)</li>
-                  <li>Responsive Design</li>
-                </ul>
-
-                <h3 className="font-semibold mt-4">Backend Development:</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>Node.js, Express.js</li>
-                  <li>MongoDB (NoSQL)</li>
-                </ul>
-
-                <h3 className="font-semibold mt-4">Authentication:</h3>
-                <ul className="list-disc pl-5 space-y-1">
-                  <li>JSON Web Tokens (JWT)</li>
-                </ul>
-              </div>
+              <ul className="list-disc pl-5 space-y-1 text-sm">
+                {safeTechnicalSkills.length > 0 ? (
+                  safeTechnicalSkills.map((skill, index) => (
+                    <li key={index}>{skill}</li>
+                  ))
+                ) : (
+                  <li>No technical skills found.</li>
+                )}
+              </ul>
             </section>
 
             <section className="mb-6">
               <h2 className="text-lg font-bold mb-2">Core Competencies</h2>
               <ul className="list-disc pl-5 space-y-1 text-sm">
-                {safeCoreCompetencies.map((competency, index) => (
-                  <li key={index}>{competency}</li>
-                ))}
+                {safeCoreCompetencies.length > 0 ? (
+                  safeCoreCompetencies.map((competency, index) => (
+                    <li key={index}>{competency}</li>
+                  ))
+                ) : (
+                  <li>No core competencies found.</li>
+                )}
               </ul>
             </section>
 
@@ -152,7 +136,7 @@ const ResumeGenerator = () => {
             </section>
           </div>
 
-          <div className="md:w-1/2 md:ml-0" style={{ marginLeft: "-40px" }}>
+          <div className="md:w-1/2 mt-6 md:mt-0">
             <section className="mb-6">
               <h2 className="text-lg font-bold mb-2">Academic Projects</h2>
               {parsedProjects.length > 0 ? (
@@ -161,18 +145,38 @@ const ResumeGenerator = () => {
                     <h3 className="text-md font-bold">{project.title}</h3>
                     <p className="italic text-sm">{project.duration}</p>
                     <p className="text-sm">{project.description}</p>
-                    <ul className="list-disc pl-5 space-y-1 text-sm">
-                      {project.responsibilities.map((responsibility, i) => (
-                        <li key={i}>{responsibility}</li>
-                      ))}
-                    </ul>
+                    {Array.isArray(project.responsibilities) && (
+                      <ul className="list-disc pl-5 space-y-1 text-sm">
+                        {project.responsibilities.map((responsibility, i) => (
+                          <li key={i}>{responsibility}</li>
+                        ))}
+                      </ul>
+                    )}
                     {project.sourceCode && (
                       <p className="text-sm">
-                        Source Code: {project.sourceCode}
+                        Source Code:{" "}
+                        <a
+                          href={project.sourceCode}
+                          className="text-blue-700 underline"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {project.sourceCode}
+                        </a>
                       </p>
                     )}
                     {project.liveLink && (
-                      <p className="text-sm">Live Link: {project.liveLink}</p>
+                      <p className="text-sm">
+                        Live Link:{" "}
+                        <a
+                          href={project.liveLink}
+                          className="text-blue-700 underline"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {project.liveLink}
+                        </a>
+                      </p>
                     )}
                   </div>
                 ))
@@ -192,10 +196,28 @@ const ResumeGenerator = () => {
             </section>
           </div>
         </div>
+
+        <hr className="my-4 border-t-2 border-gray-300" />
+
+        <div className="text-center">
+          <button className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded transition duration-200">
+            Download Resume
+          </button>
+          {/* <DownloadButton
+            resumeData={{
+              name,
+              jobRole,
+              profileSummary,
+              academicDetails,
+              safeTechnicalSkills,
+              safeCoreCompetencies,
+              parsedProjects,
+              achievements,
+              personalDetails,
+            }}
+          /> */}
+        </div>
       </div>
-      <button className="mt-6 bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded transition duration-200">
-        Download Resume
-      </button>
     </div>
   );
 };
