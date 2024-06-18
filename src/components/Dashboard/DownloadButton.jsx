@@ -3,31 +3,28 @@ import html2pdf from "html2pdf.js";
 
 const DownloadButton = () => {
   const handleDownload = async () => {
-    const resumeElement = document.getElementById("resume-content");
-
-    if (!resumeElement) {
-      console.error("Resume content element not found");
-      return;
-    }
-
     try {
-      // Get the height of the resume content
-      const contentHeight = resumeElement.offsetHeight;
+      const resumeElement = document.getElementById("resume-content");
 
-      // Use html2pdf to convert the resume element to PDF
-      const opt = {
-        margin: 0,
+      if (!resumeElement) {
+        console.error("Resume content element not found");
+        return;
+      }
+
+      const options = {
         filename: "resume.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 1 },
+        image: { type: "jpeg", quality: 1.0 },
+        html2canvas: {
+          scale: 2,
+          backgroundColor: "#ffffff",
+        },
         jsPDF: {
-          unit: "px",
-          format: [resumeElement.offsetWidth, contentHeight],
+          format: "a4",
           orientation: "portrait",
         },
       };
 
-      html2pdf().from(resumeElement).set(opt).save();
+      html2pdf().from(resumeElement).set(options).save();
     } catch (error) {
       console.error("Error generating PDF:", error);
     }

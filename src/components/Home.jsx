@@ -11,6 +11,9 @@ const Home = () => {
   const [academicDetails, setAcademicDetails] = useState("");
   const [technicalSkills, setTechnicalSkills] = useState("");
   const [phone, setPhone] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [github, setGithub] = useState("");
+  const [portfolio, setPortfolio] = useState("");
   const [projects, setProjects] = useState([
     {
       title: "",
@@ -71,6 +74,9 @@ const Home = () => {
         additionalDetails,
         academicDetails,
         technicalSkills: technicalSkills.split("\n"),
+        linkedin,
+        github,
+        portfolio,
         projects: JSON.stringify(projects),
         achievements: achievements.split("\n"),
         personalDetails,
@@ -82,32 +88,107 @@ const Home = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Resume Generator</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">Resume Generator</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Name
-          </label>
-          <input
-            type="text"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
+        <div className="flex justify-between items-center mb-4">
+          <DemoValues
+            setName={setName}
+            setEmail={setEmail}
+            setPhone={setPhone}
+            setJobRole={setJobRole}
+            setJobDescription={setJobDescription}
+            setProfileSummary={setProfileSummary}
+            setAdditionalDetails={setAdditionalDetails}
+            setAcademicDetails={setAcademicDetails}
+            setTechnicalSkills={setTechnicalSkills}
+            setLinkedin={setLinkedin}
+            setGithub={setGithub}
+            setPortfolio={setPortfolio}
+            setProjects={setProjects}
+            setAchievements={setAchievements}
+            setPersonalDetails={setPersonalDetails}
+            setCoreCompetencies={setCoreCompetencies}
+            setSummary={setSummary}
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+
+        {/* Basic Information */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Name
+            </label>
+            <input
+              type="text"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Email
+            </label>
+            <input
+              type="email"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Phone
+            </label>
+            <input
+              type="text"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              LinkedIn Profile
+            </label>
+            <input
+              type="url"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={linkedin}
+              onChange={(e) => setLinkedin(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              GitHub Profile
+            </label>
+            <input
+              type="url"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={github}
+              onChange={(e) => setGithub(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Portfolio Link
+            </label>
+            <input
+              type="url"
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              value={portfolio}
+              onChange={(e) => setPortfolio(e.target.value)}
+              required
+            />
+          </div>
         </div>
+
+        {/* Job Role and Description */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Job Role
@@ -153,24 +234,14 @@ const Home = () => {
             required
           />
         </div>
+
+        {/* Projects */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Projects
           </label>
           {projects.map((project, index) => (
             <div key={index} className="mb-4">
-              <div className="flex justify-between">
-                <h4 className="text-md font-bold">Project {index + 1}</h4>
-                {projects.length > 1 && (
-                  <button
-                    type="button"
-                    className="text-red-600 hover:text-red-800"
-                    onClick={() => removeProject(index)}
-                  >
-                    Remove
-                  </button>
-                )}
-              </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Title
@@ -223,14 +294,15 @@ const Home = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700">
-                  Source Code
+                  Source Code Link
                 </label>
                 <input
-                  type="text"
+                  type="url"
                   name="sourceCode"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   value={project.sourceCode}
                   onChange={(e) => handleProjectChange(index, e)}
+                  required
                 />
               </div>
               <div>
@@ -238,23 +310,33 @@ const Home = () => {
                   Live Link
                 </label>
                 <input
-                  type="text"
+                  type="url"
                   name="liveLink"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   value={project.liveLink}
                   onChange={(e) => handleProjectChange(index, e)}
+                  required
                 />
               </div>
+              <button
+                type="button"
+                className="mt-2 text-red-600 hover:text-red-800"
+                onClick={() => removeProject(index)}
+              >
+                Remove Project
+              </button>
             </div>
           ))}
           <button
             type="button"
-            className="text-blue-600 hover:text-blue-800"
+            className="mt-2 text-blue-600 hover:text-blue-800"
             onClick={addProject}
           >
             Add Another Project
           </button>
         </div>
+
+        {/* Achievements */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Achievements (Separate by new line)
@@ -266,6 +348,8 @@ const Home = () => {
             required
           />
         </div>
+
+        {/* Personal Details */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
             Personal Details
@@ -277,35 +361,48 @@ const Home = () => {
             required
           />
         </div>
+
+        {/* Core Competencies */}
         <div>
           <label className="block text-sm font-medium text-gray-700">
-            Additional Details
+            Core Competencies (Separate by new line)
           </label>
           <textarea
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            value={additionalDetails}
-            onChange={(e) => setAdditionalDetails(e.target.value)}
+            value={coreCompetencies}
+            onChange={(e) => setCoreCompetencies(e.target.value)}
+            required
           />
         </div>
-        <DemoValues
-          setName={setName}
-          setEmail={setEmail}
-          setJobRole={setJobRole}
-          setJobDescription={setJobDescription}
-          setAcademicDetails={setAcademicDetails}
-          setTechnicalSkills={setTechnicalSkills}
-          setProjects={setProjects}
-          setAchievements={setAchievements}
-          setPersonalDetails={setPersonalDetails}
-          setAdditionalDetails={setAdditionalDetails}
-          setCoreCompetencies={setCoreCompetencies}
-          setSummary={setSummary}
-          setProfileSummary={setProfileSummary}
-          setPhone={setPhone}
-        />
+
+        {/* Summary */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Summary
+          </label>
+          <textarea
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            value={summary}
+            onChange={(e) => setSummary(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            Profile Summary
+          </label>
+          <textarea
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            value={profileSummary}
+            onChange={(e) => setProfileSummary(e.target.value)}
+            required
+          />
+        </div>
+
         <button
           type="submit"
-          className="w-full px-3 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Generate Resume
         </button>

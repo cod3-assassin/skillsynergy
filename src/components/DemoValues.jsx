@@ -11,38 +11,32 @@ const demoValues = {
     "Bachelor of Science in Computer Science from XYZ University, Graduated in 2020.",
   technicalSkills:
     "JavaScript\nReact\nNode.js\nExpress.js\nMongoDB\nHTML & CSS\nGit & GitHub",
-  projects: JSON.stringify([
+  projects: [
     {
-      title: "Task Manager App",
+      title: "Project One",
+      description: "A web application for managing tasks.",
+      duration: "Jan 2020 - Dec 2020",
+      responsibilities: "Developed front-end using React.",
+      sourceCode: "https://github.com/johndoe/project-one",
+      liveLink: "https://project-one.johndoe.com",
+    },
+    {
+      title: "Project Two",
+      description: "A mobile app for tracking fitness activities.",
       duration: "Jan 2021 - Dec 2021",
-      description:
-        "Developed a full-stack web application for task management  application for task management Designed the front-end using React..",
-      responsibilities:
-        "Designed the front-end using React. Implemented RESTful APIs with Node.js and Express. Integrated MongoDB for database management. Deployed the application on Heroku.",
-      sourceCode: "https://github.com/janedoe/task-manager",
-      liveLink: "https://task-manager.janedoe.com",
+      responsibilities: "Developed back-end using Node.js.",
+      sourceCode: "https://github.com/johndoe/project-two",
+      liveLink: "https://project-two.johndoe.com",
     },
     {
-      title: "E-commerce Platform",
-      duration: "Jan 2022 - Present",
-      description:
-        "Led a team of developers to create an e-commerce platform.\nLed a team of developers to create an e-commerce platform.\nLed a team of developers to create an e-commerce platform.",
-      responsibilities:
-        "Architected the application using microservices. Developed reusable components in React. Set up CI/CD pipelines using GitHub Actions. Collaborated with UX designers to enhance user experience.",
-      sourceCode: "https://github.com/janedoe/e-commerce",
-      liveLink: "https://ecommerce.janedoe.com",
+      title: "Project Three",
+      description: "An e-commerce platform for selling products online.",
+      duration: "Jan 2022 - Dec 2022",
+      responsibilities: "Implemented full-stack features and integrations.",
+      sourceCode: "https://github.com/johndoe/project-three",
+      liveLink: "https://project-three.johndoe.com",
     },
-    {
-      title: "E-commerce Platform",
-      duration: "Jan 2022 - Present",
-      description:
-        "Led a team of developers to create an e-commerce platform.\nLed a team of developers to create an e-commerce platform.\nLed a team of developers to create an e-commerce platform.",
-      responsibilities:
-        "Architected the application using microservices. Developed reusable components in React. Set up CI/CD pipelines using GitHub Actions. Collaborated with UX designers to enhance user experience.",
-      sourceCode: "https://github.com/janedoe/e-commerce",
-      liveLink: "https://ecommerce.janedoe.com",
-    },
-  ]),
+  ],
   achievements:
     "Received Employee of the Month award at XYZ Company in May 2022.\nCompleted a certification in Advanced JavaScript from ABC Institute.",
   personalDetails:
@@ -54,40 +48,49 @@ const demoValues = {
   summary:
     "A full stack developer with high problem-solving skills and the ability to develop complex projects. Proficient in IoT Devices with projects beneficial to a wide audience. Developed a highly scalable attendance system used regularly in college. Created a Smart Chair that improved posture for working professionals. Enhanced the UI of the college website by identifying and correcting visual inaccuracies. In-depth knowledge of multiple technology stacks contributing to efficient product development.",
   profileSummary:
-    "A full stack developer with high problem-solving skills and the ability to develop complex projects.A full stack developer with high problem-solving skills and the ability to develop complex projects.",
+    "A full stack developer with high problem-solving skills and the ability to develop complex projects.",
+  linkedin: "https://linkedin.com/in/janedoe",
+  github: "https://github.com/janedoe",
+  portfolio: "https://janedoe.com",
 };
 
 const DemoValues = ({
   setName,
   setEmail,
+  setPhone,
   setJobRole,
-  setProfileSummary,
   setJobDescription,
+  setProfileSummary,
+  setAdditionalDetails,
   setAcademicDetails,
   setTechnicalSkills,
+  setLinkedin,
+  setGithub,
+  setPortfolio,
   setProjects,
   setAchievements,
   setPersonalDetails,
-  setAdditionalDetails,
   setCoreCompetencies,
   setSummary,
-  setPhone,
 }) => {
   const handleFillForm = () => {
     setName(demoValues.name);
     setEmail(demoValues.email);
+    setPhone(demoValues.phone);
     setJobRole(demoValues.jobRole);
     setJobDescription(demoValues.jobDescription);
+    setProfileSummary(demoValues.profileSummary);
+    setAdditionalDetails(demoValues.additionalDetails);
     setAcademicDetails(demoValues.academicDetails);
     setTechnicalSkills(demoValues.technicalSkills);
-    setProjects(JSON.parse(demoValues.projects));
+    setLinkedin(demoValues.linkedin);
+    setGithub(demoValues.github);
+    setPortfolio(demoValues.portfolio);
+    setProjects(demoValues.projects);
     setAchievements(demoValues.achievements);
     setPersonalDetails(demoValues.personalDetails);
-    setAdditionalDetails(demoValues.additionalDetails);
     setCoreCompetencies(demoValues.coreCompetencies);
     setSummary(demoValues.summary);
-    setProfileSummary(demoValues.profileSummary);
-    setPhone(demoValues.phone);
   };
 
   return (
