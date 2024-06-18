@@ -11,13 +11,20 @@ const DownloadButton = () => {
     }
 
     try {
+      // Get the height of the resume content
+      const contentHeight = resumeElement.offsetHeight;
+
       // Use html2pdf to convert the resume element to PDF
       const opt = {
         margin: 0,
         filename: "resume.pdf",
         image: { type: "jpeg", quality: 0.98 },
         html2canvas: { scale: 1 },
-        jsPDF: { unit: "px", format: [1024, 1448], orientation: "portrait" },
+        jsPDF: {
+          unit: "px",
+          format: [resumeElement.offsetWidth, contentHeight],
+          orientation: "portrait",
+        },
       };
 
       html2pdf().from(resumeElement).set(opt).save();
