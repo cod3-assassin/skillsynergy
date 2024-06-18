@@ -1,12 +1,44 @@
 import React from "react";
+import { FaGithub, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa";
 
 const Footer = () => {
+  const socialIcons = [
+    { icon: <FaGithub />, href: "https://github.com/cod3-assassin" },
+    { icon: <FaXTwitter />, href: "https://twitter.com/cod3_assassin" },
+    { icon: <FaInstagram />, href: "https://www.instagram.com/cod3_assassin/" },
+  ];
+
   return (
-    <footer className="bg-gray-800 text-white py-4">
-      <div className="container mx-auto px-4 text-center">
-        <p>&copy; 2024 JobResumeMaker. All rights reserved.</p>
+    <footer className="bg-gradient-to-r from-blue-500 to-amber-500 bg-opacity-80 text-white py-4">
+      <div className="container mx-auto flex justify-between items-center flex-wrap px-4">
+        <p className="text-sm mb-2 md:mb-0">
+          © 2024 JobResumeMaker. All rights reserved.
+        </p>
+        <p className="text-sm mb-2 md:mb-0">
+          Made with <FaHeart className="text-red-500 inline" /> by cod3_assassin
+        </p>
+        <div className="flex space-x-4">
+          {socialIcons.map((socialIcon, index) => (
+            <SocialIcon key={index} {...socialIcon} />
+          ))}
+        </div>
       </div>
     </footer>
+  );
+};
+
+const SocialIcon = ({ icon, href }) => {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-white rounded-full overflow-hidden transition duration-300 hover:bg-gray-700 flex items-center justify-center w-8 h-8"
+    >
+      {icon}
+    </a>
   );
 };
 

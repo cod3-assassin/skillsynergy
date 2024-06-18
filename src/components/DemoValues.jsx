@@ -40,7 +40,7 @@ const demoValues = {
   achievements:
     "Received Employee of the Month award at XYZ Company in May 2022.\nCompleted a certification in Advanced JavaScript from ABC Institute.",
   personalDetails:
-    "Date of Birth: Jan 1, 1995. Address: 123 Main St, Anytown, USA. Phone: (123) 456-7890.",
+    "Date of Birth: Jan 1, 1995.\nAddress: 123 Main St, Anytown, USA.\nPhone: (123) 456-7890.",
   additionalDetails:
     "Fluent in English and Spanish. Enjoys contributing to open source projects and participating in hackathons.",
   coreCompetencies:

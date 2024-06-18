@@ -43,6 +43,9 @@ const ResumeGenerator = () => {
   const safeTechnicalSkills = Array.isArray(technicalSkills)
     ? technicalSkills
     : [];
+  const safePersonalDetails = Array.isArray(personalDetails)
+    ? personalDetails
+    : [];
 
   return (
     <div className="bg-gray-100 min-h-screen py-4 flex items-center justify-center">
@@ -134,7 +137,12 @@ const ResumeGenerator = () => {
 
               <section>
                 <h2 className="text-lg font-bold mb-2">Personal Details</h2>
-                <p className="text-sm">{personalDetails}</p>
+                <ul className="list-disc pl-5 space-y-1 text-sm">
+                  {safePersonalDetails &&
+                    safePersonalDetails.map((details, index) => (
+                      <li key={index}>{details}</li>
+                    ))}
+                </ul>
               </section>
             </div>
 

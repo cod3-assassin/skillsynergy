@@ -79,7 +79,7 @@ const Home = () => {
         portfolio,
         projects: JSON.stringify(projects),
         achievements: achievements.split("\n"),
-        personalDetails,
+        personalDetails: personalDetails.split("\n"),
         coreCompetencies: coreCompetencies.split("\n"),
         summary,
       },
