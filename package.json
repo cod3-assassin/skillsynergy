@@ -11,12 +11,23 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "axios": "^1.7.2",
+    "bcrypt": "^5.1.1",
     "compromise": "^14.13.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "gridfs-stream": "^1.1.1",
     "html2pdf": "^0.0.11",
     "html2pdf.js": "^0.10.1",
     "jsonwebtoken": "^9.0.2",
     "jspdf": "^2.5.1",
+    "mongoose": "^8.4.3",
+    "multer": "^1.4.4",
+    "multer-gridfs-storage": "^5.0.2",
     "natural": "^7.0.6",
+    "nodemailer": "^6.9.14",
     "pdf-lib": "^1.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -35,5 +46,6 @@
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "vite": "^5.2.0"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

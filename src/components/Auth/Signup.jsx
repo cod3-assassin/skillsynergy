@@ -1,5 +1,7 @@
+// src/components/Auth/Signup.jsx
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -7,11 +9,22 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    // Implement signup logic here
-    console.log("Signing up with", name, email, password);
-    navigate("/login");
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/signup",
+        {
+          name,
+          email,
+          password,
+        }
+      );
+      console.log("Signup response:", response.data);
+      navigate("/login");
+    } catch (error) {
+      console.error("Signup error", error.response.data);
+    }
   };
 
   return (
