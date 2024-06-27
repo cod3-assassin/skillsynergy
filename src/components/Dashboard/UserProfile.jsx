@@ -28,7 +28,7 @@ const UserProfile = () => {
         if (!token) {
           throw new Error("User not authenticated");
         }
-        const response = await axios.get("http://localhost:5000/api/profile", {
+        const response = await axios.get("/api/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -54,7 +54,7 @@ const UserProfile = () => {
         throw new Error("User not authenticated");
       }
       await axios.put(
-        `http://localhost:5000/api/profile`,
+        `/api/profile`,
         { name, email },
         {
           headers: {
@@ -80,7 +80,7 @@ const UserProfile = () => {
       if (!token) {
         throw new Error("User not authenticated");
       }
-      await axios.post(`http://localhost:5000/api/profile/resume`, formData, {
+      await axios.post(`/api/profile/resume`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -100,7 +100,7 @@ const UserProfile = () => {
         throw new Error("User not authenticated");
       }
       await axios.put(
-        `http://localhost:5000/api/profile/password`,
+        `/api/profile/password`,
         { password },
         {
           headers: {
@@ -123,7 +123,7 @@ const UserProfile = () => {
         throw new Error("User not authenticated");
       }
       await axios.post(
-        `http://localhost:5000/api/profile/forgot-password`,
+        `/api/profile/forgot-password`,
         {},
         {
           headers: {
@@ -145,7 +145,7 @@ const UserProfile = () => {
       if (!token) {
         throw new Error("User not authenticated");
       }
-      await axios.delete(`http://localhost:5000/api/profile`, {
+      await axios.delete(`/api/profile`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
